@@ -1,5 +1,5 @@
 
-RSpec.describe Product, type: :Model do
+RSpec.describe Product, type: :model do
   describe 'DB table' do
     it { is_expected.to have_db_column :id }
     it { is_expected.to have_db_column :title }
@@ -11,7 +11,6 @@ RSpec.describe Product, type: :Model do
   end
 
   describe 'Validations' do
-    it { is_expected.to validate_presence_of :id }
     it { is_expected.to validate_presence_of :title }
     it { is_expected.to validate_presence_of :description }
     it { is_expected.to validate_presence_of :category }
