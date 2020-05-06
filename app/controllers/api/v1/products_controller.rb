@@ -4,5 +4,3 @@ class Api::V1::ProductsController < ApplicationController
     render json: { products: products }
   end
 end
-
-    
