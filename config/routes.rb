@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     end
     namespace :v1 do
       resources :products, only: [:index], constraints: { format: 'json' }
+      resources :orders, only: [:create]
     end
   end
 end
