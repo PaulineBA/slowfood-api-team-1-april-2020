@@ -1,5 +1,11 @@
-require 'rails_helper'
+RSpec.describe OrderItem, type: :model do 
+  describe 'Database table' do
+    it { is_expected.to have_db_column :order_id }
+    it { is_expected.to have_db_column :product_id }
+  end
 
-RSpec.describe OrderItem, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'Relations' do
+    it { is_expected.to belong_to :product }
+    it { is_expected.to belong_to :order }
+  end
 end
