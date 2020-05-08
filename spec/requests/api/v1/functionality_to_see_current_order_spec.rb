@@ -3,7 +3,7 @@ RSpec.describe Api::V1::OrdersController, type: :request do
   let!(:product_2) {create(:product, title: 'Hamburger', id: 2)}
 
   before do
-    post '/api/v1/orders', 
+    post '/api/v1/orders/', 
     params: {
       product_id: product_1.id
     }
@@ -25,7 +25,7 @@ RSpec.describe Api::V1::OrdersController, type: :request do
     end
   end
 
-  describe "PUT /api/orders/:id" do
+  describe 'PUT /api/orders/:id' do
     before do
       put "api/orders/#{@order_id}", params: { product_id: product_2.id }
       @order = Order.find(@order_id)
