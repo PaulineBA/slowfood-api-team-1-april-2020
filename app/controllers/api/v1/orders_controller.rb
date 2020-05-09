@@ -10,6 +10,6 @@ class Api::V1::OrdersController < ApplicationController
     product = Product.find(params[:product_id])
     order.order_items.create(product: product)
     render json: {message: 'The product has been added to your order', order_id: order.id}
-end
+  end
 end
 
