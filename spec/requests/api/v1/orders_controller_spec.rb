@@ -47,5 +47,9 @@ RSpec.describe Api::V1::OrdersController, type: :request do
     it "responds with the right order total" do
       expect(response_json['order']['order_total']).to eq 330
     end
+
+    it "responds with product id" do
+      expect(response_json['order']['products'][0]['product_id']).to eq product_1.id
+    end
   end
 end
