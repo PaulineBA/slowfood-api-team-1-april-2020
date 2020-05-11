@@ -7,7 +7,7 @@ RSpec.describe Api::V1::OrdersController, type: :request do
     params: {
       product_id: product_1.id
     }
-    @order_id = response_json["order_id"]
+    @order_id = response_json['order']["id"]
   end
   
   describe 'POST /api/v1/order' do
@@ -21,22 +21,31 @@ RSpec.describe Api::V1::OrdersController, type: :request do
 
     it "should return order id in response" do
       order = Order.find(@order_id)
-      expect(response_json["order_id"]).to eq order.id
+      expect(response_json['order']["id"]).to eq order.id
     end
   end
 
   describe 'PUT /api/v1/orders/:id' do
     before do
       put "/api/v1/orders/#{@order_id}", params: { product_id: product_2.id }
+      put "/api/v1/orders/#{@order_id}", params: { product_id: product_2.id }
       @order = Order.find(@order_id)
     end
 
-    it "adds another product to the order" do
-      expect(@order.order_items.count).to eq 2
+    it "responds with the right amount of products in order" do
+      expect(@order.order_items.count).to eq 3
+    end
+
+    it "responds with the right amount of unique products in order" do
+      expect(response_json['order']['products'].count).to eq 2
     end
 
     it "responds with order id" do
-      expect(response_json["order_id"]).to eq @order.id
+      expect(response_json['order']["id"]).to eq @order.id
+    end
+
+    it "responds with the right order total" do
+      expect(response_json['order']['order_total']).to eq 330
     end
   end
 end
