@@ -12,6 +12,10 @@ class Api::V1::OrdersController < ApplicationController
     render json: create_json_response(order)
   end
 
+   def index
+      render json: create_json_response(order)
+   end
+
   private
   
   def create_json_response(order)
